@@ -7,17 +7,23 @@ export const useCartStore = defineStore('cart', {
     state: () => {
         return {
             products: [],
+
             selectedShippingMode: null,
             selectedPaymentMode: null,
 
-            isOpen: false,
-            currency: null,
-            coupon: null,
             availableShippingModes: [],
+
+            preSavedShippingAddresses: [],
+            selectedPreSavedShippingAddress: null,
+
+            coupon: null,
+
             subtotal: 0,
             total: 0,
 
             messages: null,
+            currency: null,
+            isOpen: false,
         }
     },
     getters: {
@@ -71,11 +77,15 @@ export const useCartStore = defineStore('cart', {
             this.subtotal = response.data.cart.subtotal
             this.total = response.data.cart.total
             this.currency = response.data.cart.currency
+
             this.availableShippingModes = response.data.cart.availableShippingModes
             this.selectedShippingMode = response.data.cart.shippingMode
             this.selectedPaymentMode = response.data.cart.paymentMode
+
+            this.preSavedShippingAddresses = response.data.cart.preSavedShippingAddresses
+
             this.messages = response.data.cart.messages
-        }
+        },
     }
 })
 
@@ -114,6 +124,11 @@ export const useCheckoutStore = defineStore('checkout', {
         },
         updateErrorMessages(response) {
             this.errors = {...response.data.errors}
+        },
+        useSelectedShippingData() {
+            let cart = useCartStore()
+
+            this.shippingData = {...cart.selectedPreSavedShippingAddress}
         }
     },
     getters: {

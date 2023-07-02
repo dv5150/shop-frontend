@@ -6,6 +6,23 @@
                     <th colspan="2">Shipping Address</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="preSavedAddress" style="font-weight: normal;">Saved addresses</label>
+                        <select id="preSavedAddress" v-model="cart.selectedPreSavedShippingAddress">
+                            <option v-for="address in cart.preSavedShippingAddresses" :value="address">
+                                {{ address.displayName }}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button @click.prevent="checkout.useSelectedShippingData()" class="button button-clear">
+                            [ USE THIS ADDRESS ]
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <fieldset>
             <label for="name">Name</label>
@@ -38,5 +55,3 @@ import InputError from "../partials/InputError"
 let cart = useCartStore()
 let checkout = useCheckoutStore()
 </script>
-
-<style lang="scss" scoped></style>
