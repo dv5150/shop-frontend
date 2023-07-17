@@ -2,17 +2,14 @@
 
 namespace DV5150\Shop\Frontend\Http\Controllers;
 
+use DV5150\Shop\Contracts\Models\OrderContract;
+
 class ShopController
 {
-    public function showThankYouPage(string $uuid)
+    public function showThankYouPage(OrderContract $order)
     {
-        $order = config('shop.models.order')::with(['items.product'])
-            ->firstWhere('uuid', $uuid);
-
-        abort_if(!$order, 404, __('Order not found.'));
-
         return view('shop::thankYou', [
-            'order' => $order
+            'order' => $order->load(['items.product'])
         ]);
     }
 }
