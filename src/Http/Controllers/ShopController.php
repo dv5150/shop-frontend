@@ -9,7 +9,7 @@ class ShopController
     public function showThankYouPage(OrderContract $order)
     {
         return view('shop::thankYou', [
-            'order' => $order->load(['items.product'])
+            'order' => $order->load(['items.sellable'])
         ]);
     }
 }

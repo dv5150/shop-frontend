@@ -29,9 +29,6 @@ export const useCartStore = defineStore('cart', {
     getters: {
         cartItemLength: (state) => _.sumBy(state.products, (product) => product.quantity),
         availablePaymentModes: (state) => state.selectedShippingMode?.paymentModes,
-        disableShippingModeFields: (state) => {
-            return state.selectedShippingMode?.provider && (state.selectedShippingMode?.provider !== 'default')
-        },
         hasCartPriceModifiers: (state) => {
             return state.selectedShippingMode
                 || state.selectedPaymentMode

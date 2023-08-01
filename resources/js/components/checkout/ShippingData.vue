@@ -30,15 +30,15 @@
             <input-error :field-name="'shippingData.name'"></input-error>
 
             <label for="zipCode">Zip Code</label>
-            <input type="text" id="zipCode" placeholder="1000" v-model="checkout.shippingData.zipCode" :disabled="cart.disableShippingModeFields">
+            <input type="text" id="zipCode" placeholder="1000" v-model="checkout.shippingData.zipCode">
             <input-error :field-name="'shippingData.zipCode'"></input-error>
 
             <label for="city">City</label>
-            <input type="text" id="city" placeholder="Budapest" v-model="checkout.shippingData.city" :disabled="cart.disableShippingModeFields">
+            <input type="text" id="city" placeholder="Budapest" v-model="checkout.shippingData.city">
             <input-error :field-name="'shippingData.city'"></input-error>
 
             <label for="address">Street</label>
-            <input type="text" id="address" placeholder="Main road 72" v-model="checkout.shippingData.street" :disabled="cart.disableShippingModeFields">
+            <input type="text" id="address" placeholder="Main road 72" v-model="checkout.shippingData.street">
             <input-error :field-name="'shippingData.street'"></input-error>
 
             <label for="comment">Comments</label>
